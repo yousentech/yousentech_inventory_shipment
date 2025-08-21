@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  
+    <record id="group_prevent_update_source_des_location" model="res.groups">
+      <field name="name">Prevent update Source / Destination location</field>
+      <field name="category_id" ref="yousentech_inventory.inventory_category"/>
+    </record>
+
+  </data>
+</odoo>

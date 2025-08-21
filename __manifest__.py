@@ -8,10 +8,11 @@
     'website': "https://www.qimamhd.com",
     'company': 'yousen Techno Solutions',
     'maintainer': 'yousen Techno Solutions',
-    'depends': ['base','stock','yousentech_inventory',],
+    'depends': ['base','stock','yousentech_inventory'],
     'data': [
-       
-        'views/stock_move.xml'
+        'security/security.xml',
+        'views/stock_move.xml',
+        'views/stock_picking.xml'
     ],
   
     'images': ['static/description/icon.png'],
