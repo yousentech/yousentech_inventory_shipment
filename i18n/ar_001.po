@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* yousentech_inventory_shipment
+# 	* yousentech_inventory_shipment_shipment
 #
 msgid ""
 msgstr ""
@@ -17,23 +17,17 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "X-Generator: Poedit 3.4.1\n"
 
-#. module: yousentech_inventory_shipment
-#: model:ir.module.category,description:yousentech_inventory_shipment.inventory_category
-msgid "All available permissions for Inventory management"
-msgstr "جميع صلاحيات المتاحة لإدارة المخزون"
 
-#. module: yousentech_inventory_shipment
-#: model:res.groups,name:yousentech_inventory_shipment.allow_access_to_inventory_setting
-msgid "Allow Access to Inventory Setting"
-msgstr "السماح بالوصول إلى إعدادات المخزون"
 
-#. module: yousentech_inventory_shipment
-#: model:ir.model.fields,field_description:yousentech_inventory_shipment.field_res_company__allowed_warehouse_ids
-#: model:ir.model.fields,field_description:yousentech_inventory_shipment.field_res_user_inventory_config__allowed_warehouse_ids
-msgid "Allowed Warehouses"
-msgstr "المخازن المسموحة"
-
-#. module: yousentech_inventory_shipment
-#: model:ir.model.fields,field_description:yousentech_inventory_shipment.field_stock_move__aval_qty
+#. module: yousentech_inventory_shipment_shipment
+#: model:ir.model.fields,field_description:yousentech_inventory_shipment_shipment.field_stock_move__aval_qty
 msgid "Available Quantity"
 msgstr "الكمية المتوفرة"
+
+
+#. module: yousentech_inventory_shipment
+#: model:res.groups,name:yousentech_inventory_shipment.group_prevent_update_source_des_location
+msgid "Prevent update Source / Destination location"
+msgstr "عدم السماح بتحديث موقع المصدر / الوجهة"
+
+
