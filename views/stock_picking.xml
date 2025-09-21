@@ -7,14 +7,17 @@
             <field name="inherit_id" ref="stock.view_picking_form" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name = 'picking_type_id']" position="after">
-                    <field name="prevent_update_source_des_location" invisible="1"/>
+                    <field name="prevent_update_source_des_location"  />
                 </xpath>
+                
                 <xpath expr="//field[@name = 'location_dest_id']" position="attributes">
-                    <attribute name="readonly">prevent_update_source_des_location</attribute>
+                    <attribute name="readonly">prevent_update_source_des_location == True</attribute>
                 </xpath>
                  <xpath expr="//field[@name = 'location_id']" position="attributes">
-                    <attribute name="readonly">prevent_update_source_des_location</attribute>
+                          <attribute name="readonly">prevent_update_source_des_location == True</attribute>
                 </xpath>
+
+             
             </field>
         </record>
     </data>

@@ -24,7 +24,7 @@ class stock_picking(models.Model):
             rec._fields['location_id'].domain = rec._get_location_dest_domain()
             rec._fields['location_dest_id'].domain = rec._get_location_dest_domain()
 
-
+    @api.depends('user_id')
     def _check_group_prevent_update_source_des_location(self):
         for rec in self:
             try:
