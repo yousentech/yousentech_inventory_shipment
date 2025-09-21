@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 class stock_picking(models.Model):
     _inherit = 'stock.picking'
 
-    prevent_update_source_des_location = fields.Boolean()
+    prevent_update_source_des_location = fields.Boolean(compute='_check_group_prevent_update_source_des_location',)
 
     def _get_location_dest_domain(self):
         domain = []

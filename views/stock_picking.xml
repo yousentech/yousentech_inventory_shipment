@@ -11,10 +11,10 @@
                 </xpath>
                 
                 <xpath expr="//field[@name = 'location_dest_id']" position="attributes">
-                    <attribute name="readonly">prevent_update_source_des_location == True</attribute>
+                    <attribute name="readonly">1</attribute>
                 </xpath>
                  <xpath expr="//field[@name = 'location_id']" position="attributes">
-                          <attribute name="readonly">prevent_update_source_des_location == True</attribute>
+                    <attribute name="readonly">1</attribute>
                 </xpath>
 
              
