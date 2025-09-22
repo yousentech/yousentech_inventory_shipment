@@ -28,11 +28,11 @@ class stock_picking(models.Model):
                 domain = []
         return domain
 
-    @api.onchange('picking_type_id','location_id','location_dest_id')
-    def onchange_update_location_domain(self):
-        for rec in self:
-            rec._fields['location_id'].domain = rec._get_location_dest_domain()
-            rec._fields['location_dest_id'].domain = rec._get_location_dest_domain()
+    # @api.onchange('picking_type_id','location_id','location_dest_id')
+    # def onchange_update_location_domain(self):
+    #     for rec in self:
+    #         rec._fields['location_id'].domain = rec._get_location_dest_domain()
+    #         rec._fields['location_dest_id'].domain = rec._get_location_dest_domain()
 
     @api.depends('user_id')
     def check_group_prevent_update_source_des_location(self):
