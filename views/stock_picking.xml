@@ -13,9 +13,9 @@
                 <xpath expr="//field[@name = 'location_dest_id']" position="attributes">
                     <attribute name="readonly">prevent_update_source_des_location</attribute>
                 </xpath>
-                <xpath expr="//field[@name = 'location_dest_id']" position="attributes">
+                <!-- <xpath expr="//field[@name = 'location_dest_id']" position="attributes">
                     <attribute name="domain">location_domain</attribute>
-                </xpath>
+                </xpath> -->
                 
                  <xpath expr="//field[@name = 'location_id']" position="attributes">
                     <attribute name="readonly">prevent_update_source_des_location</attribute>

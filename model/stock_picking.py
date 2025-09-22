@@ -54,4 +54,19 @@ class stock_picking(models.Model):
         for rec in self:
             rec._fields['location_id'].readonly = rec.prevent_update_source_des_location
             rec._fields['location_dest_id'].readonly = rec.prevent_update_source_des_location        
-           
+        
+
+    @api.depends('picking_type_id', 'partner_id')
+    def _compute_location_id(self):
+        res = super(stock_picking, self)._compute_location_id()   
+
+        for rec in self:
+            if rec.picking_type_id.warehouse_id:
+                res['domain'].update({
+                    'location_dest_id': [
+                        ('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),
+                        ('usage', 'in', ['internal']),
+                        ('company_id', '=', rec.company_id.id)
+                    ]
+                })
+        return res
