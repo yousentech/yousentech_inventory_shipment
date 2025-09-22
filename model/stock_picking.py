@@ -8,7 +8,7 @@ class stock_picking(models.Model):
     _inherit = 'stock.picking'
 
     prevent_update_source_des_location = fields.Boolean(compute='_check_group_prevent_update_source_des_location',)
-    # location_domain = fields.Char(compute="_get_location_domain")
+    location_domain = fields.Char()
    
     # @api.depends('picking_type_id')
     # def get_location_domain(self):
