@@ -59,4 +59,4 @@ class stock_picking(models.Model):
     @api.onchange('picking_type_id', 'partner_id','company_id')
     def get_location_domain(self):
         
-        return  {'domain': {'branch_id': [('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),('usage', 'in', ['internal']),('company_id','=',self.company_id.id)]}}
+        return  {'domain': {'branch_id': [('warehouse_id', '=', self.picking_type_id.warehouse_id.id),('usage', 'in', ['internal']),('company_id','=',self.company_id.id)]}}
