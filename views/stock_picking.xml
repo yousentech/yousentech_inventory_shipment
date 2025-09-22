@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name = 'picking_type_id']" position="after">
                     <field name="prevent_update_source_des_location" invisible="1"/>
-                    <field name="location_domain" invisible="1"/>
+                    <!-- <field name="location_domain" invisible="1"/> -->
                 </xpath>
                 <xpath expr="//field[@name = 'location_dest_id']" position="attributes">
                     <attribute name="readonly">prevent_update_source_des_location</attribute>
