@@ -8,15 +8,15 @@ class stock_picking(models.Model):
     _inherit = 'stock.picking'
 
     prevent_update_source_des_location = fields.Boolean(compute='_check_group_prevent_update_source_des_location',)
-    location_domain = fields.Char(compute="_get_location_domain")
+    # location_domain = fields.Char(compute="_get_location_domain")
    
-    @api.depends('picking_type_id')
-    def get_location_domain(self):
-            for rec in self:
-                if rec.picking_type_id and rec.picking_type_id.warehouse_id:
-                    rec.location_domain = [('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),('usage', 'in', ['internal'])]
-                else:
-                    rec.location_domain  = []
+    # @api.depends('picking_type_id')
+    # def get_location_domain(self):
+    #         for rec in self:
+    #             if rec.picking_type_id and rec.picking_type_id.warehouse_id:
+    #                 rec.location_domain = [('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),('usage', 'in', ['internal'])]
+    #             else:
+    #                 rec.location_domain  = []
            
 
     def get_location_dest_domain(self):
@@ -56,17 +56,7 @@ class stock_picking(models.Model):
             rec._fields['location_dest_id'].readonly = rec.prevent_update_source_des_location        
         
 
-    @api.depends('picking_type_id', 'partner_id')
-    def _compute_location_id(self):
-        res = super(stock_picking, self)._compute_location_id()   
-
-        for rec in self:
-            if rec.picking_type_id.warehouse_id:
-                res['domain'].update({
-                    'location_dest_id': [
-                        ('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),
-                        ('usage', 'in', ['internal']),
-                        ('company_id', '=', rec.company_id.id)
-                    ]
-                })
-        return res
+    @api.onchange('picking_type_id', 'partner_id','company_id')
+    def get_location_domain(self):
+        
+        return  {'domain': {'branch_id': [('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),('usage', 'in', ['internal']),('company_id','=',self.company_id.id)]}}
