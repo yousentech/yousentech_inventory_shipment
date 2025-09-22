@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -8,8 +8,18 @@ class stock_picking(models.Model):
     _inherit = 'stock.picking'
 
     prevent_update_source_des_location = fields.Boolean(compute='_check_group_prevent_update_source_des_location',)
+    location_domain = fields.Char(compute="_get_location_domain")
+   
+    @api.depends('picking_type_id')
+    def get_location_domain(self):
+            for rec in self:
+                if rec.picking_type_id and rec.picking_type_id.warehouse_id:
+                    rec.location_domain = [('warehouse_id', '=', rec.picking_type_id.warehouse_id.id),('usage', 'in', ['internal'])]
+                else:
+                    rec.location_domain  = []
+           
 
-    def _get_location_dest_domain(self):
+    def get_location_dest_domain(self):
         domain = []
         for rec in self:
             if rec.picking_type_id and rec.picking_type_id.warehouse_id:
@@ -19,13 +29,13 @@ class stock_picking(models.Model):
         return domain
 
     @api.onchange('picking_type_id','location_id','location_dest_id')
-    def _onchange_update_location_domain(self):
+    def onchange_update_location_domain(self):
         for rec in self:
             rec._fields['location_id'].domain = rec._get_location_dest_domain()
             rec._fields['location_dest_id'].domain = rec._get_location_dest_domain()
 
     @api.depends('user_id')
-    def _check_group_prevent_update_source_des_location(self):
+    def check_group_prevent_update_source_des_location(self):
         for rec in self:
             try:
                 is_user_has_group = self.user_has_groups(
@@ -40,7 +50,7 @@ class stock_picking(models.Model):
 
 
     @api.onchange('picking_type_id','location_id','location_dest_id')
-    def _onchange_update_location_readonly(self):
+    def onchange_update_location_readonly(self):
         for rec in self:
             rec._fields['location_id'].readonly = rec.prevent_update_source_des_location
             rec._fields['location_dest_id'].readonly = rec.prevent_update_source_des_location        
